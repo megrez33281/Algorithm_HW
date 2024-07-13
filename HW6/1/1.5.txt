@@ -1,0 +1,18 @@
+#Exercise1-5
+from qiskit import QuantumCircuit,IBMQ, execute
+from qiskit_ibm_provider import IBMProvider
+from qiskit.tools.monitor import job_monitor
+
+qc = QuantumCircuit(3,3)
+qc.measure(range(3), range(3))
+print(qc)
+
+#IBMQ.save_account('808b1af1d3459aaa697882ac562dc2b959a3ab825e49ef749152cddf1ab2ebb99017a4029869a58261f977256aba3310b849b289b44cb465b1547ef1b9c3508a',overwrite=True)
+IBMQ.load_account()
+provider = IBMProvider()
+qcomp = provider.get_backend('ibm_oslo')
+job = execute(qc, backend=qcomp, shots=1000)
+job_monitor(job)
+result = job.result()
+counts = result.get_counts(qc)
+print("Total counts for qubit states are:",counts)

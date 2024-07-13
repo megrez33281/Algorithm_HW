@@ -1,0 +1,18 @@
+#Exercise 4-4
+from qiskit import QuantumCircuit,execute
+from qiskit.providers.aer import AerSimulator
+from qiskit.visualization import plot_histogram
+
+qc = QuantumCircuit(2,2)
+qc.h(0)
+
+qc.cx(0,1)
+qc.measure([0,1],[0,1])
+display(qc.draw('mpl'))
+
+#模擬
+sim = AerSimulator()
+job = execute(qc,backend=sim,shots=1000)
+result=job.result()
+counts=result.get_counts(qc)
+plot_histogram(counts)

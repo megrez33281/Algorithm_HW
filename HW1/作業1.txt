@@ -1,0 +1,91 @@
+A.使用虛擬碼(pseudo code)寫一個演算法，輸入一個整數n(n>2)並並判斷n是否為質數
+Algorithm IsPrime(n)
+Input：整數n(n>2)
+Output：n是(true)否(false)為質數
+  for i <- 2 to n-1 do
+    if(n%i == 0) then
+      return false;
+  
+  return true;
+
+AI.使用虛擬碼(pseudo code)寫一個演算法，輸入一個整數n(n>2)並並判斷n是否為質數
+Algorithm IsPrimeI(n)
+Input：整數n(n>2)
+Output：n是(true)否(false)為質數
+   for i <- 2 to n^1/2  do
+    if(n%i == 0) then
+      return false;
+  return true;
+
+B.使用虛擬碼(pseudo code)寫一個演算法，輸入一個整數n(n>2)並輸出小於n的最大因數(factor)
+Algorithm LargestPrime(n)
+Input：整數n(n>2)
+Output：小於n的最大因數
+  f<-1
+  for i <- 2 to n-1 do
+    if(n%i == 0) then
+       f<-i
+  return f
+C.使用虛擬碼 (pseudo code)寫一個演算法，輸入一個整數n(n>2)並輸出所有n除了本身以外的正因數(factor)總和
+Algorithm PrimeSum(n)
+Input：整數n(n>2)
+Output：所有n除了本身以外的正因數(factor)總和
+  s<- 1
+  for i <- 2 to n-1 do
+    if(n%i == 0) then
+      s <- s+i
+  
+  return s
+D.使用虛擬碼(pseudo code)寫一個演算法，輸入整數n及m(n>m>2)，輸出所有比n小並大於m的n的因數(factor)總和，若無此因數則輸出0
+Algoritm PrimeSumI(n,m)
+Input：整數n及m(n>m>2)
+Output：所有比n小並大於m的n的因數(factor)總和，若無此因數則輸出0
+  s <- 0
+  for i <- m+1 to n-1 do
+    if(n%i == 0) then
+      s <- s+i
+  
+  return s
+
+E.使用虛擬碼(pseudo code)寫一個演算法，輸入一個整數n(n>2)並判斷n是否為完美數(perfect number)。一個完美數是一個正整數，它所有的真因數(即除了自身以外的因數)的和，恰好等於它本身。
+Algorithm IsPerfectNumber(n)
+Input：整數n(n>2)
+Output：n是(true)否(false)為完美數
+  s <- 1
+  for i <- 2 to n-1 do
+    if(n%i == 0) then
+      s <- s+i
+  if s == n then
+    return true
+  else
+    return false
+F.使用虛擬碼(pseudo code)寫 一個演算法，輸入一個整數n(n>0)並判斷n是否為快樂數
+Algorithm IsHappyNumber(n)
+Input：整數n(n>0)
+Output：n是(true)否(false)為快樂數
+  
+  while(n != 4 ^ n != 1) do  //若n非快樂數則必定會循環到4
+    d <- 0
+    //得到所有位數的平方和
+    while(n > 0) do
+      d <- d + (n%10)*(n%10)
+      n <- n/10
+    n <- d
+
+  if(n == 1) do 
+    return true
+  else
+    return false
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,92 @@
+A. 使用虛擬碼(pseudo code)寫一個時間複雜度為O(sqrt(n))的演算法，輸入一個整數n(n>2)並輸出所有n除了本身以外的正因數 (factor)總和，你必須分析演算法的時間複雜度。
+Algorithm FactorSum(n)
+Input：整數n(n>2)
+Output：n除了本身以外的正因數總和
+    sum <- 0
+    for i <- floor(sqrt(n)) downto 1 do
+        if (n%i == 0) then
+            sum <- sum +i
+            if(i != 1 && n/i != i) then  #避免平方數，且避免出現重複計算
+	        sum <- sum + n/i #找到對應i的因數
+    return sum
+
+時間複雜度分析：
+   4*(floor(sqrt(n))-1+1) = O(sqrt(n))
+
+B.使用虛擬碼(pseudo code)寫一個時間複雜度為O(sqrt(n))的演算法，輸入整數n及m(n>m>2)，輸出所有比n小並大於 m的n的因數 (factor)總和，若無此因數則輸出0，分析演算法的時 間與空間複雜度。
+
+Algorithm  FactorSumGatterThanm(n,m)
+Input：整數n及m(n>m>2)
+Output：比n小並大於 m的n的因數總和
+    sum <- 0
+    for i <- 2 to i <- floor(sqrt(n)) do	#由於n > m > 2 且m,n皆為整數，n至少為4，不會出現n=3的錯誤
+	if(n %i == 0) then
+	    if(i > m) then
+	        sum <- sum + i
+            if(n/i != n && n/i > m ) then #避免平方數
+	        sum <- sum + n/i
+    return sum
+
+時間複雜度分析：
+    5*(floor(sqrt(n))-2+1) = O(sqrt(n))
+
+
+C.使用虛擬碼(pseudo code)寫一個時間複雜度為O(sqrt(n))的演算法，輸入一個整數(n>2)並判斷n是否為完美數 (perfect number)，你必須分析演算法的最差及最佳時間複雜度。
+Algorithm IsPerfectNumber(n)
+Input：整數n(n>2)
+Output：n是(true)否(false)為完美數
+    sum <- 1
+    if(n == 3) then	#floor(sqrt(3)) = 1
+        return false
+    for i <- 2 to floor(sqrt(n)) do
+        if (n%i == 0) then
+            sum <- sum +i
+            if(n/i != i) then  #避免平方數，且避免出現重複計算
+	        sum <- sum + n/i #找到對應i的因數
+    if(sum==n) then
+	return true
+    return false
+
+時間複雜度分析：
+    最佳時間複雜度：
+　　　　　　在n=1、2、3時，時間複雜度為O(1)
+　　最差時間複雜度：
+    迴圈前經3條指令
+    迴圈由 2~floor(squrt(n))，共floor(sqrt(n))-1次，每次回圈會執行1~4行程式，設為常數k，最後在執行常量條指令c
+    故時間複雜度為4*(floor(sqrt(n))-2+1) = O(sqrt(n))
+
+
+D. 使用虛擬碼(pseudo code)寫一個演算法，以輸入一個具有n個元素的集合S並輸出S的幂集(pwoer set)，你必須分析演算法的時間複雜度。
+Alogrithm PowerSet(S,index,subset)
+Input：有n個元素的集合S，以及當前要處理的元素index(0<=index<=S.len，最初呼叫時index=0)，和S的子集合subset(subset ∈ S)
+Oubput：S的幂集
+    if(index == S.len) then
+        return subset
+    newSetI <- subset			#複製一個子集合，避免指向相同的記憶體
+    PowerSet(S,index+1,newSetI)		#不含當前元素之子集
+    newSetII <- subset			#複製一個子集合，避免指向相同的記憶體
+    newSetII.add(S[index])		#將當前元素加入newSetII
+    PowerSet(S,index+1,newSetII)	#含當前元素之子集
+
+時間複雜度分析：
+    令時間複雜度為T(n)
+    T(1) = T(2) = 1
+    T(n) = 2*T(n-1) + 2 = 2*(2*T(n-2) +2) +2 = 2*(2*(2*T(n-3)+2)+2)+2 = ...... =  2^(n-1)*T(1) + {2 + 2^2 +2^3 + ...... + 2^(n-1)} = 2^(n-1) + 2^n <= 2*2^n = O(2^n)
+
+
+E. 分析費伯納西數列演算法與遞迴費伯納西數列演算法之空間 複雜度
+
+費伯納西數列：
+	只用到a,b,c,三個額外空間，故空間複雜度為O(1)
+
+遞迴費伯納西數列：
+	最多遞迴n-2次，每次會使用a,b，兩個空間，故空間複雜度為O(n)
+
+G. 若一演算法A的時間複雜度為6 x 2^n=O(2^n)可以在n=10的時候耗費一小時解決問題 X，而另一個解決問題X的演算法B的時間複雜度為5 x n^3 = O(n^3)， 則請問當n=10時演 算法B要耗費多少時間完成?
+    6*2^10 : 60 = 5x10^3 : x
+    x = 48.82182min
+
+H.若一演算法A的時間複雜度為6 x 2^n=O(2^n)可以在n=10的時候耗費一小時解決問題X，而另一個解決問 題X的演算法B的時間 複雜度為5 x n^3 =O(n^3)，則請問當n為何值時演算法B要耗費一小時才可以完成?
+    5*n^3 = 6144
+	
+

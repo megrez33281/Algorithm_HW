@@ -1,0 +1,29 @@
+#Exercise 3.1
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+import math
+
+qc = QuantumCircuit(4)#4qubits的量子線路
+#初始化
+qc.initialize([1,0],0)
+qc.initialize([1,0],1)
+qc.initialize([1,0],2)
+qc.initialize([1,0],3)
+#|+> 指向正x軸
+qc.h(0) #在0線路加上h閘
+
+#|-> 指向負x軸
+qc.x(1) #在1線路加上x閘(取負)
+qc.h(1) #在1線路上加上h閘
+
+#指向正y軸
+qc.h(2) #在2線路加上h閘
+qc.s(2) #在2線路加上s閘
+
+#指向負y軸
+qc.h(3) #在3線路加上h閘 放到xy平面
+qc.s(3) #在3線路加上s閘
+qc.z(3) #在3線路加上z閘
+display(qc.draw('mpl'))
+state = Statevector.from_instruction(qc)
+display(state.draw('bloch')) #印出布洛赫球

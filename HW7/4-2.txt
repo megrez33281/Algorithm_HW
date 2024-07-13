@@ -1,0 +1,5 @@
+#Exercise 4-2
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(6)
+qc.mcx([0,1,2,3,4],5,mode='noancilla') #將第0，1，2，3，4位元設為控制位元，第5位元設為目標位元
+qc.draw('mpl')

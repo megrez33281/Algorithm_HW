@@ -1,0 +1,13 @@
+#Exercise 2.1
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+import math
+
+qc = QuantumCircuit(4)
+qc.initialize([1/math.sqrt(2),1/math.sqrt(2)],0) #(向量,序號)
+qc.initialize([1/math.sqrt(2),-1/math.sqrt(2)],1)
+qc.initialize([1/math.sqrt(2),1j/math.sqrt(2)],2)#順時針
+qc.initialize([1/math.sqrt(2),-1j/math.sqrt(2)],3)#逆時針
+print(qc)
+state = Statevector.from_instruction(qc)
+display(state.draw('bloch')) #印出布洛赫球

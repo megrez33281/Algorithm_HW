@@ -1,0 +1,23 @@
+#Exercise 5-3
+from qiskit import QuantumCircuit,execute
+from qiskit.providers.aer import AerSimulator
+from qiskit.visualization import plot_histogram
+
+qc = QuantumCircuit(4,3)
+qc.x(3)
+qc.h(range(4)) #量子疊加態
+qc.barrier()
+qc.cx(0,3)
+qc.barrier()
+qc.h(range(3))
+qc.measure(range(3),range(3))
+display(qc.draw('mpl'))
+
+#模擬
+sim = AerSimulator()
+job = execute(qc,backend=sim,shots=1000)
+result=job.result()
+counts=result.get_counts()
+print("Count：",counts)
+display(plot_histogram(counts))
+#由於CNOT|-> = |-> 造成相位反擊，使q0從經過H閘狀態為|+>變成|->，再經過h閘，等於q0經過x閘再經過兩個h閘，兩個h閘會使該位元不發生變化，故q0變成|1>(經過x閘變成|1>)

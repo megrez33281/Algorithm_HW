@@ -1,0 +1,30 @@
+A. 在氣泡排序(bubble sort)演算法中，若在某回合中完全沒有任何資料對調，則可推論資料已經排序完成而立即結束演算法執行，這稱為改良氣泡排序(improved bubble sort)演算法。請以虛擬碼描述「改 良氣泡排序演算法」。(請注意:在有些文獻中，所謂 「氣泡排序演算法」其實指的是「改良氣 泡排序演算 法」)
+Algorithm ImprovedBubbleSort(A,n)
+Input： 具 n 個整數的陣列 A
+Output： 具 n 個整數的陣列 A
+   sorted <- false
+   for i <- n-1 to 1  && sorted == false do
+       sorted <- true
+       for j <- 1 to i do
+          if a[j] < a[j-1] then
+	      swap(A[j],A[j-1])
+	      sorted <- false
+   return A
+
+D. 分析快速排序演算法最佳狀況空間複雜度(best case space complexity)。
+   在最佳情況時，每次quick sort都會將陣列分割成兩半，共會遞迴2log2(n)次
+   每次有3個空間建立 => 3*2*log2(n) = O(logn)
+
+E. 分析快速排序演算法最差狀況空間複雜度(worst case space complexity)。
+   在最差狀況時，每次都都只將陣列切割出一個數字，共需遞迴n-1次
+   次有3個空建立 => 3*(n-1) = O(n)
+
+F. 舉出兩個方法讓快速 排序(quick sort)演算法避免產生最壞狀況。
+  1)優先判斷是否需要排序
+  2)用三數取中法選取樞紐：
+    每次從取出array的左、中、右部之元素排列後放回，並以中間之元素作為樞紐
+    將中間元素與右部元素前一個元素進行交換，進入sort程序：
+    將左指針設為左部右邊第一個元素，右指針設為樞紐左邊第一個元素
+    左指針向右遇到大於樞紐之值時停止，右指針遇到小於樞紐之值時停止，兩者交換
+    當兩指針相遇，將指針處之元素與樞紐進行交換，並將樞紐左、右部分分別再以三數取中法做Quick sort
+    此作法的優點每次分割出的陣列長度至少為1

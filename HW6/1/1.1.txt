@@ -1,0 +1,5 @@
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(5,5)  #5個量子位元以及5個古典位元
+qc.measure([0,1,2,3,4],[0,1,2,3,4])  #測量並儲存觀測結果到古典位元
+
+qc.draw('mpl')

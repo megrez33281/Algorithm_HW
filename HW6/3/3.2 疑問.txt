@@ -1,0 +1,35 @@
+#Exercise 3.2
+from qiskit import QuantumCircuit
+import math
+
+qc = QuantumCircuit(6)#6qubits的量子線路
+
+#線路0
+qc.rx(math.pi/2,0)
+qc.x(0)
+
+#線路1
+qc.p(math.pi/4,1)
+qc.y(1)
+
+#線路2
+qc.rx(math.pi/2,2)
+qc.z(2)
+
+#線路3
+qc.p(math.pi/4,3)
+qc.s(3)
+qc.u(math.pi,0,0,3)#1項
+
+#線路4
+qc.rx(math.pi/2,4)
+qc.t(4)
+qc.u(math.pi,math.pi/2,0,4)#2項
+
+#線路5
+qc.p(math.pi/4,5)
+qc.h(5)
+qc.u(math.pi,math.pi/2,math.pi/4,5)#3項
+qc.h(5)
+
+display(qc.draw('mpl'))

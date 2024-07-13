@@ -1,0 +1,14 @@
+#Exercise 2.2
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+import math
+
+qc = QuantumCircuit(4)
+#以complex表示複數
+qc.initialize([complex(-1/2,0),complex(0,-math.sqrt(3)/2)],0) #(向量,序號)
+qc.initialize([complex(0,2/3),complex(math.sqrt(5)/3,0)],1)
+qc.initialize([complex(1/4,0),complex(-math.sqrt(15)/4,0)],2)
+qc.initialize([complex(0,-3/4),complex(0,math.sqrt(7)/4)],3)
+print(qc)
+state = Statevector.from_instruction(qc)
+display(state.draw('bloch')) #印出布洛赫球

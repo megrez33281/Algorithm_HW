@@ -1,0 +1,12 @@
+from qiskit import QuantumCircuit, execute
+from qiskit.providers.aer import AerSimulator
+
+sim = AerSimulator() #建立模擬器
+qc = QuantumCircuit(3,3) #建立量子線路
+qc.measure([0,1,2],[0,1,2])
+print(qc) #以存文字輸出
+
+job = execute(qc,backend=sim, shots=1000) #以模擬器執行qc1000次
+result = job.result()
+counts = result.get_counts(qc)
+print("Total counts for qubit states are:",counts)

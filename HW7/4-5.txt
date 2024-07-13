@@ -1,0 +1,7 @@
+#Exercise  4-5
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(3)
+qc.mcx([0,1],2,mode='noancilla')
+
+qc.draw('mpl')

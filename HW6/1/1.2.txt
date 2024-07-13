@@ -1,0 +1,15 @@
+from qiskit import QuantumRegister,ClassicalRegister,QuantumCircuit
+#建立量子暫存器
+qx = QuantumRegister(1,'qx')
+qy = QuantumRegister(1,'qy')
+qz = QuantumRegister(1,'qz')
+
+#建立古典暫存器
+cx = ClassicalRegister(1,'cx')
+cy = ClassicalRegister(1,'cy')
+cz = ClassicalRegister(1,'cz')
+qc = QuantumCircuit(qx,qy,qz,cx,cy,cz)  #建立量子線路
+
+qc.measure([0,1,2],[0,1,2])  #測量並儲存觀測結果到古典位元
+print("This is a quantum circuit of 3 qubit and 3 bit:")
+qc.draw('mpl')
